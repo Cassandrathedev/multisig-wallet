@@ -28,7 +28,7 @@ contract MultiSigWalletTest is Test {
         vm.deal(address(wallet), 10 ether);
     }
 
-    // ── DEPLOYMENT TESTS 
+    //  DEPLOYMENT TESTS 
 
     function test_OwnersSetCorrectly() public {
         address[] memory walletOwners = wallet.getOwners();
@@ -73,7 +73,7 @@ contract MultiSigWalletTest is Test {
         new MultiSigWallet(dupeOwners, 2);
     }
 
-    // ── DEPOSIT TESTS 
+    //  DEPOSIT TESTS 
 
     function test_ReceiveETH() public {
         vm.deal(stranger, 1 ether);
@@ -83,7 +83,7 @@ contract MultiSigWalletTest is Test {
         assertEq(address(wallet).balance, 11 ether);
     }
 
-    // ── PROPOSE TESTS 
+    //  PROPOSE TESTS 
 
     function test_OwnerCanPropose() public {
         vm.prank(owner1);
@@ -104,7 +104,7 @@ contract MultiSigWalletTest is Test {
         wallet.propose(address(0), 1 ether, "");
     }
 
-    // ── APPROVE TESTS 
+    //  APPROVE TESTS 
 
     function test_OwnerCanApprove() public {
         vm.prank(owner1);
@@ -143,7 +143,7 @@ contract MultiSigWalletTest is Test {
         wallet.approve(99);
     }
 
-    // ── REVOKE TESTS 
+    //  REVOKE TESTS 
 
     function test_OwnerCanRevoke() public {
         vm.prank(owner1);
@@ -167,7 +167,7 @@ contract MultiSigWalletTest is Test {
         wallet.revoke(0);
     }
 
-    // ── EXECUTE TESTS 
+    //  EXECUTE TESTS 
 
     function test_ExecuteWithEnoughApprovals() public {
         vm.prank(owner1);

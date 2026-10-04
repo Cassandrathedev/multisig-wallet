@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 contract MultiSigWallet {
 
-    // ── REENTRANCY GUARD
+    //  REENTRANCY GUARD
     uint256 private _guardStatus;
     uint256 private constant _NOT_ENTERED = 1;
     uint256 private constant _ENTERED = 2;
@@ -15,14 +15,14 @@ contract MultiSigWallet {
         _guardStatus = _NOT_ENTERED;
     }
 
-    // ── EVENTS 
+    //  EVENTS 
     event Deposit(address indexed sender, uint256 amount);
     event TransactionProposed(uint256 indexed txId, address indexed proposer, address to, uint256 value, bytes data);
     event TransactionApproved(uint256 indexed txId, address indexed owner);
     event TransactionRevoked(uint256 indexed txId, address indexed owner);
     event TransactionExecuted(uint256 indexed txId, address indexed executor);
 
-    // ── STATE 
+    //  STATE 
     address[] public owners;
     uint256 public required; // threshold
 
@@ -41,7 +41,7 @@ contract MultiSigWallet {
     // txId => owner => approved
     mapping(uint256 => mapping(address => bool)) public approved;
 
-    // ── MODIFIERS 
+    // ─ MODIFIERS 
     modifier onlyOwner() {
         require(isOwner[msg.sender], "Not an owner");
         _;
@@ -62,7 +62,7 @@ contract MultiSigWallet {
         _;
     }
 
-    // ── CONSTRUCTOR 
+    //  CONSTRUCTOR 
     constructor(address[] memory _owners, uint256 _required) {
         _guardStatus = _NOT_ENTERED; // initialize guard 
 
@@ -84,12 +84,12 @@ contract MultiSigWallet {
         required = _required;
     }
 
-    // ── RECEIVE ETH 
+    //  RECEIVE ETH 
     receive() external payable {
         emit Deposit(msg.sender, msg.value);
     }
 
-    // ── PROPOSE 
+    //  PROPOSE 
     function propose(
         address _to,
         uint256 _value,
@@ -110,7 +110,7 @@ contract MultiSigWallet {
         emit TransactionProposed(txId, msg.sender, _to, _value, _data);
     }
 
-    // ── APPROVE 
+    //  APPROVE 
     function approve(uint256 txId)
         external
         onlyOwner
@@ -124,7 +124,7 @@ contract MultiSigWallet {
         emit TransactionApproved(txId, msg.sender);
     }
 
-    // ── REVOKE 
+    //  REVOKE 
     function revoke(uint256 txId)
         external
         onlyOwner
@@ -139,7 +139,7 @@ contract MultiSigWallet {
         emit TransactionRevoked(txId, msg.sender);
     }
 
-    // ── EXECUTE 
+    //  EXECUTE 
     function execute(uint256 txId)
         external
         onlyOwner
@@ -161,7 +161,7 @@ contract MultiSigWallet {
         emit TransactionExecuted(txId, msg.sender);
     }
 
-    // ── VIEW FUNCTIONS 
+    //  VIEW FUNCTIONS 
     function getOwners() external view returns (address[] memory) {
         return owners;
     }
