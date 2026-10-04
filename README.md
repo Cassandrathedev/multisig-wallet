@@ -32,17 +32,17 @@ The same security model used by Gnosis Safe and major DAO treasuries.
 
 ## Smart Contract Security
 
-- **Reentrancy Guard** — custom nonReentrant modifier blocks reentrant calls
-- **Checks-Effects-Interactions** — state updated before external calls
-- **Access Control** — all functions gated behind onlyOwner modifier
-- **Input Validation** — zero address checks, duplicate owner prevention, threshold validation
+- **Reentrancy Guard** - custom nonReentrant modifier blocks reentrant calls
+- **Checks-Effects-Interactions** - state updated before external calls
+- **Access Control** - all functions gated behind onlyOwner modifier
+- **Input Validation** - zero address checks, duplicate owner prevention, threshold validation
 
 ## Tech Stack
 
-- **Smart Contract** — Solidity 0.8.20, Foundry
-- **Frontend** — Next.js 14, TypeScript, Tailwind CSS
-- **Web3** — ethers.js v6
-- **Network** — Ethereum Sepolia Testnet
+- **Smart Contract** - Solidity 0.8.20, Foundry
+- **Frontend** - Next.js 14, TypeScript, Tailwind CSS
+- **Web3** - ethers.js v6
+- **Network** - Ethereum Sepolia Testnet
 
 
 ## Getting Started
